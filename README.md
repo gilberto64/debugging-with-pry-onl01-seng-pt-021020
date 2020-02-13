@@ -1,4 +1,4 @@
-# Debugging with Pry
+ruby# Debugging with Pry
 
 ## Overview
 
@@ -10,72 +10,7 @@ We'll cover Pry, a type of REPL, and discuss how to install and use it to debug 
 2. Install Pry on your computer. (already installed for IDE users)
 3. Debug a program using binding.pry within the body of your file.
 
-## What Is a REPL?
-
-You've already been introduced to REPLs through using IRB (Interactive Ruby). REPL stands for *Read, Evaluate, Print, Loop*. It is an interactive programming environment that takes a user's input, evaluates it and returns the result to the user. 
-
-Ruby installs with its own REPL, which is IRB, that you've already been using. Every time you type `irb` into your terminal, you're entering into a REPL.
-
-## What Is Pry?
-
-Pry is another Ruby REPL with some added functionality. When you enter IRB, you are entering a brand new interactive environment. Any code you want to play with in IRB, you have to write in IRB or copy and paste into IRB. Pry, on the other hand, is like a REPL that you can inject into your program. 
-
-Pry is far more flexible than IRB. Once you install the Pry library (via the Pry gem—we'll walk through installation in a bit), you can use the following line `binding.pry` anywhere in your code. 
-
-## Wait... What's 'binding'? 
-
-Binding is a built-in ruby class whose objects can encapsulate the context of your current scope (variables, methods etc.), and retain them for use outside of that context. 
-
-Calling `binding.pry` is essentially 'prying' into the current binding or context of the code, from outside your file.
-
-So when you place the line `binding.pry` in your code, that line will get interpreted at runtime (as your program is executed). When the interpreter hits that line, your program will actually *freeze* and your terminal will turn into a REPL that exists right in the middle of your program, wherever you added the `binding.pry` line. 
-
-Let's take a look. In this repository, you'll see a file called `pry_is_awesome.rb`. 
-
-## Instructions Part I
-
-<div class="readme-content-test--show-when-active">
-    
-1. Ensure that you're in the project "root" directory by issuing `cd` into the cloned directory. 
-    
-2. Verify that 'pry' is installed: `gem list pry`: you should see something like `pry (0.11.3)`. The LearnIDE already has PRY installed.  
-
-</div>
-    
-<div class="readme-content-test--hide-when-active">
-    
-1. Fork and clone this repository.   
-
-2. Install Pry on your computer by navigating to your home directory (`cd ~` in your terminal) and execute `gem install pry`. (again, no need to do this if you are working in the IDE)
-</div>
-
-3. Look at the code in `lib/pry_is_awesome.rb`
-
-You should see the following code: 
-
-```ruby
-require 'pry'
-
-def prying_into_the_method
-    inside_the_method = "We're inside the method"
-    puts inside_the_method
-    puts "We're about to stop because of pry!"
-    binding.pry
-    this_variable_hasnt_been_interpreted_yet = "The program froze before it could read me!" 
-    puts this_variable_hasnt_been_interpreted_yet
-end
-
-prying_into_the_method
-```
-Here we are requiring `pry`, *which you must do to use pry*, defining a method, and then calling that method. 
-
-4. In the directory of this repo, in your terminal, run the file by typing `ruby lib/pry_is_awesome.rb`. Now, look at your terminal. You should see something like this: 
-
-```ruby
-  3: def prying_into_the_method
-     4:     inside_the_method = "We're inside the method"
-     5:     puts inside_the_method
-     6:     puts "We're about to stop because of pry!"
+## What Is a REPL
  =>  7:     binding.pry
      8:     this_variable_hasnt_been_interpreted_yet = "The program froze before it could read me!" 
      9:     puts this_variable_hasnt_been_interpreted_yet
